@@ -44,6 +44,23 @@
     <script>
         let personIndex = 1;
 
+        function toggleMenuOptions(index) {
+            const ageElement = document.getElementById(`age_${index}`);
+            const entreeElement = document.getElementById(`entree_${index}`).parentElement;
+            const platElement = document.getElementById(`plat_${index}`).parentElement;
+            const childMenuElement = document.getElementById(`child-menu_${index}`).parentElement;
+
+            if (ageElement.value === "adulte") {
+                entreeElement.style.display = "block";
+                platElement.style.display = "block";
+                childMenuElement.style.display = "none";
+            } else if (ageElement.value === "enfant") {
+                entreeElement.style.display = "none";
+                platElement.style.display = "none";
+                childMenuElement.style.display = "block";
+            }
+        }
+
         function addPerson() {
             personIndex++;
             const personContainer = document.createElement("div");
@@ -57,31 +74,40 @@
                 <input type="text" id="last_name_${personIndex}" name="last_name_${personIndex}" required>
 
                 <label for="age_${personIndex}">Âge (Enfant ou Adulte) :</label>
-                <select id="age_${personIndex}" name="age_${personIndex}" required>
+                <select id="age_${personIndex}" name="age_${personIndex}" onchange="toggleMenuOptions(${personIndex})" required>
                     <option value="adulte">Adulte</option>
                     <option value="enfant">Enfant</option>
                 </select>
 
-                <label for="entree_${personIndex}">Choix d'entrée :</label>
-                <select id="entree_${personIndex}" name="entree_${personIndex}" required>
-                    <option value="samoussa">Salade de Samoussa de Chèvre</option>
-                    <option value="tartare">Tartare de Saumon aux Fines Herbes</option>
-                </select>
+                <div style="display: block;">
+                    <label for="entree_${personIndex}">Choix d'entrée :</label>
+                    <select id="entree_${personIndex}" name="entree_${personIndex}" required>
+                        <option value="samoussa">Salade de Samoussa de Chèvre</option>
+                        <option value="tartare">Tartare de Saumon aux Fines Herbes</option>
+                    </select>
+                </div>
 
-                <label for="plat_${personIndex}">Choix de plat principal :</label>
-                <select id="plat_${personIndex}" name="plat_${personIndex}" required>
-                    <option value="volaille">Suprême de Volaille Farci</option>
-                    <option value="saint-pierre">Filet de Saint-Pierre, Sauce Homardine</option>
-                </select>
+                <div style="display: block;">
+                    <label for="plat_${personIndex}">Choix de plat principal :</label>
+                    <select id="plat_${personIndex}" name="plat_${personIndex}" required>
+                        <option value="volaille">Suprême de Volaille Farci</option>
+                        <option value="saint-pierre">Filet de Saint-Pierre, Sauce Homardine</option>
+                    </select>
+                </div>
 
-                <label for="child-menu_${personIndex}">Menu enfant (si applicable) :</label>
-                <select id="child-menu_${personIndex}" name="child-menu_${personIndex}">
-                    <option value="burger">Burger Steak Haché</option>
-                    <option value="nuggets">Nuggets</option>
-                    <option value="">N/A</option>
-                </select>
+                <div style="display: none;">
+                    <label for="child-menu_${personIndex}">Menu enfant (si applicable) :</label>
+                    <select id="child-menu_${personIndex}" name="child-menu_${personIndex}">
+                        <option value="burger">Burger Steak Haché</option>
+                        <option value="nuggets">Nuggets</option>
+                        <option value="">N/A</option>
+                    </select>
+                </div>
             `;
             document.getElementById("people").appendChild(personContainer);
+
+            // Assurez-vous que les options de menu se mettent à jour selon l'âge sélectionné par défaut
+            toggleMenuOptions(personIndex);
         }
     </script>
 </head>
@@ -100,29 +126,35 @@
                     <input type="text" id="last_name_1" name="last_name_1" required>
 
                     <label for="age_1">Âge (Enfant ou Adulte) :</label>
-                    <select id="age_1" name="age_1" required>
+                    <select id="age_1" name="age_1" onchange="toggleMenuOptions(1)" required>
                         <option value="adulte">Adulte</option>
                         <option value="enfant">Enfant</option>
                     </select>
 
-                    <label for="entree_1">Choix d'entrée :</label>
-                    <select id="entree_1" name="entree_1" required>
-                        <option value="samoussa">Salade de Samoussa de Chèvre</option>
-                        <option value="tartare">Tartare de Saumon aux Fines Herbes</option>
-                    </select>
+                    <div style="display: block;">
+                        <label for="entree_1">Choix d'entrée :</label>
+                        <select id="entree_1" name="entree_1" required>
+                            <option value="samoussa">Salade de Samoussa de Chèvre</option>
+                            <option value="tartare">Tartare de Saumon aux Fines Herbes</option>
+                        </select>
+                    </div>
 
-                    <label for="plat_1">Choix de plat principal :</label>
-                    <select id="plat_1" name="plat_1" required>
-                        <option value="volaille">Suprême de Volaille Farci</option>
-                        <option value="saint-pierre">Filet de Saint-Pierre, Sauce Homardine</option>
-                    </select>
+                    <div style="display: block;">
+                        <label for="plat_1">Choix de plat principal :</label>
+                        <select id="plat_1" name="plat_1" required>
+                            <option value="volaille">Suprême de Volaille Farci</option>
+                            <option value="saint-pierre">Filet de Saint-Pierre, Sauce Homardine</option>
+                        </select>
+                    </div>
 
-                    <label for="child-menu_1">Menu enfant (si applicable) :</label>
-                    <select id="child-menu_1" name="child-menu_1">
-                        <option value="burger">Burger Steak Haché</option>
-                        <option value="nuggets">Nuggets</option>
-                        <option value="">N/A</option>
-                    </select>
+                    <div style="display: none;">
+                        <label for="child-menu_1">Menu enfant (si applicable) :</label>
+                        <select id="child-menu_1" name="child-menu_1">
+                            <option value="burger">Burger Steak Haché</option>
+                            <option value="nuggets">Nuggets</option>
+                            <option value="">N/A</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
