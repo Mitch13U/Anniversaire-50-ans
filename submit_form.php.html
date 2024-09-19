@@ -1,0 +1,31 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $filename = "reservations.csv";
+
+    // Ouvre ou crée le fichier CSV
+    $file = fopen($filename, "a");
+
+    // Parcours chaque personne inscrite
+    $personIndex = 1;
+    while (isset($_POST["first_name_$personIndex"]) && isset($_POST["last_name_$personIndex"])) {
+        $firstName = $_POST["first_name_$personIndex"];
+        $lastName = $_POST["last_name_$personIndex"];
+        $age = $_POST["age_$personIndex"];
+        $entree = $_POST["entree_$personIndex"];
+        $plat = $_POST["plat_$personIndex"];
+        $childMenu = isset($_POST["child-menu_$personIndex"]) ? $_POST["child-menu_$personIndex"] : "N/A";
+
+        // Écriture dans le fichier CSV
+        $data = [$firstName, $lastName, $age, $entree, $plat, $childMenu];
+        fputcsv($file, $data);
+
+        $personIndex++;
+    }
+
+    // Fermer le fichier après écriture
+    fclose($file);
+
+    // Rediriger vers une page de confirmation (ou affichage d'un message)
+    echo "<h2>Merci pour votre réservation !</h2>";
+}
+?>
