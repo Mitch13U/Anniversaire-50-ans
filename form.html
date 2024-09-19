@@ -12,9 +12,15 @@
             padding: 50px;
         }
         .form-container {
-            width: 50%;
+            width: 70%;
             margin: auto;
             text-align: left;
+        }
+        .person {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 10px;
+            background-color: #fff;
         }
         input, select {
             width: 100%;
@@ -29,41 +35,98 @@
             font-size: 16px;
             border-radius: 5px;
             cursor: pointer;
+            display: inline-block;
+        }
+        .button.add-person {
+            margin-top: 20px;
         }
     </style>
+    <script>
+        let personIndex = 1;
+
+        function addPerson() {
+            personIndex++;
+            const personContainer = document.createElement("div");
+            personContainer.classList.add("person");
+            personContainer.innerHTML = `
+                <h3>Personne ${personIndex}</h3>
+                <label for="first_name_${personIndex}">Prénom :</label>
+                <input type="text" id="first_name_${personIndex}" name="first_name_${personIndex}" required>
+
+                <label for="last_name_${personIndex}">Nom :</label>
+                <input type="text" id="last_name_${personIndex}" name="last_name_${personIndex}" required>
+
+                <label for="age_${personIndex}">Âge (Enfant ou Adulte) :</label>
+                <select id="age_${personIndex}" name="age_${personIndex}" required>
+                    <option value="adulte">Adulte</option>
+                    <option value="enfant">Enfant</option>
+                </select>
+
+                <label for="entree_${personIndex}">Choix d'entrée :</label>
+                <select id="entree_${personIndex}" name="entree_${personIndex}" required>
+                    <option value="samoussa">Salade de Samoussa de Chèvre</option>
+                    <option value="tartare">Tartare de Saumon aux Fines Herbes</option>
+                </select>
+
+                <label for="plat_${personIndex}">Choix de plat principal :</label>
+                <select id="plat_${personIndex}" name="plat_${personIndex}" required>
+                    <option value="volaille">Suprême de Volaille Farci</option>
+                    <option value="saint-pierre">Filet de Saint-Pierre, Sauce Homardine</option>
+                </select>
+
+                <label for="child-menu_${personIndex}">Menu enfant (si applicable) :</label>
+                <select id="child-menu_${personIndex}" name="child-menu_${personIndex}">
+                    <option value="burger">Burger Steak Haché</option>
+                    <option value="nuggets">Nuggets</option>
+                    <option value="">N/A</option>
+                </select>
+            `;
+            document.getElementById("people").appendChild(personContainer);
+        }
+    </script>
 </head>
 <body>
     <h1>Formulaire de Réservation</h1>
 
     <div class="form-container">
         <form action="submit_form.php" method="POST">
-            <label for="name">Nom :</label>
-            <input type="text" id="name" name="name" required>
+            <div id="people">
+                <div class="person">
+                    <h3>Personne 1</h3>
+                    <label for="first_name_1">Prénom :</label>
+                    <input type="text" id="first_name_1" name="first_name_1" required>
 
-            <label for="adults">Nombre d'adultes :</label>
-            <input type="number" id="adults" name="adults" required>
+                    <label for="last_name_1">Nom :</label>
+                    <input type="text" id="last_name_1" name="last_name_1" required>
 
-            <label for="children">Nombre d'enfants :</label>
-            <input type="number" id="children" name="children">
+                    <label for="age_1">Âge (Enfant ou Adulte) :</label>
+                    <select id="age_1" name="age_1" required>
+                        <option value="adulte">Adulte</option>
+                        <option value="enfant">Enfant</option>
+                    </select>
 
-            <label for="entree">Choix d'entrée :</label>
-            <select id="entree" name="entree" required>
-                <option value="samoussa">Salade de Samoussa de Chèvre</option>
-                <option value="tartare">Tartare de Saumon aux Fines Herbes</option>
-            </select>
+                    <label for="entree_1">Choix d'entrée :</label>
+                    <select id="entree_1" name="entree_1" required>
+                        <option value="samoussa">Salade de Samoussa de Chèvre</option>
+                        <option value="tartare">Tartare de Saumon aux Fines Herbes</option>
+                    </select>
 
-            <label for="plat">Choix de plat principal :</label>
-            <select id="plat" name="plat" required>
-                <option value="volaille">Suprême de Volaille Farci</option>
-                <option value="saint-pierre">Filet de Saint-Pierre, Sauce Homardine</option>
-            </select>
+                    <label for="plat_1">Choix de plat principal :</label>
+                    <select id="plat_1" name="plat_1" required>
+                        <option value="volaille">Suprême de Volaille Farci</option>
+                        <option value="saint-pierre">Filet de Saint-Pierre, Sauce Homardine</option>
+                    </select>
 
-            <label for="child-menu">Menu enfant :</label>
-            <select id="child-menu" name="child-menu">
-                <option value="burger">Burger Steak Haché</option>
-                <option value="nuggets">Nuggets</option>
-            </select>
+                    <label for="child-menu_1">Menu enfant (si applicable) :</label>
+                    <select id="child-menu_1" name="child-menu_1">
+                        <option value="burger">Burger Steak Haché</option>
+                        <option value="nuggets">Nuggets</option>
+                        <option value="">N/A</option>
+                    </select>
+                </div>
+            </div>
 
+            <button type="button" class="button add-person" onclick="addPerson()">Ajouter une autre personne</button>
             <input class="button" type="submit" value="Envoyer">
         </form>
     </div>
