@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Réservations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            text-align: center;
+            padding: 50px;
+        }
+        .data-container {
+            width: 80%;
+            margin: auto;
+            text-align: left;
+        }
+    </style>
+    <script>
+        function verifyPassword() {
+            var password = prompt("Entrez le mot de passe pour accéder au tableau des réservations :");
+            if (password !== "Transhumance9112024$") {
+                alert("Mot de passe incorrect !");
+                window.location.href = "index.html";
+            }
+        }
+    </script>
+</head>
+<body onload="verifyPassword()">
+    <h1>Tableau de Réservations</h1>
+    <div class="data-container">
+        <p>Ici se trouve un tableau récapitulatif des réservations avec le nombre d'adultes, d'enfants, et les choix d'entrées et de plats principaux.</p>
+        <!-- Tu pourras ajouter le code PHP ou un fichier CSV à intégrer ici pour afficher les données -->
+    </div>
+</body>
+</html>
