@@ -3,59 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anniversaire de Michel - 50 ans</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            color: #333;
-        }
-        .menu {
-            margin: 20px auto;
-            width: 80%;
-            text-align: left;
-        }
-        .menu h2 {
-            color: #2b7a78;
-        }
-        .button {
-            background-color: #2b7a78;
-            color: white;
-            padding: 15px 25px;
-            text-decoration: none;
-            font-size: 16px;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-        .button:hover {
-            background-color: #20615b;
-        }
-    </style>
+    <title>Réservations Anniversaire 50 ans</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Bienvenue à l'anniversaire de Michel - 50 ans</h1>
-    <p>Le 9 novembre 2024 à La Transhumance, Istres. Rejoignez-nous pour une soirée mémorable avec un concert live !</p>
-    
-    <div class="menu">
-        <h2>Menu Adulte</h2>
-        <ul>
-            <li><strong>Entrée :</strong> Salade de Samoussa de Chèvre ou Tartare de Saumon aux Fines Herbes</li>
-            <li><strong>Plat :</strong> Suprême de Volaille Farci ou Filet de Saint-Pierre, Sauce Homardine</li>
-            <li><strong>Dessert :</strong> Gâteau au Chocolat</li>
-        </ul>
-        
-        <h2>Menu Enfant</h2>
-        <ul>
-            <li>Burger Steak Haché ou Nuggets, accompagné de frites</li>
-        </ul>
-    </div>
-    
-    <a class="button" href="form.html">Réserver votre place</a>
 
-    <p><a href="https://maps.google.com/?q=La+Transhumance+Istres" target="_blank">Lieu de l'anniversaire (Google Maps)</a></p>
+    <h1>Formulaire de Réservation - Anniversaire 50 ans</h1>
+    
+    <form action="https://formspree.io/f/xpwagdzb" method="POST">
+        <h3>Personne 1 :</h3>
+        <input type="text" name="Nom" placeholder="Nom" required>
+        <input type="text" name="Prénom" placeholder="Prénom" required>
+        
+        <label for="Type">Type :</label>
+        <select name="Type" id="Type" required onchange="toggleChildMenu(this)">
+            <option value="Adulte">Adulte</option>
+            <option value="Enfant">Enfant</option>
+        </select>
+
+        <label for="Entrée">Entrée :</label>
+        <select name="Entrée" id="Entrée" required>
+            <option value="Salade de Samoussa">Salade de Samoussa</option>
+            <option value="Tartare de Saumon">Tartare de Saumon</option>
+        </select>
+
+        <label for="Plat">Plat :</label>
+        <select name="Plat" id="Plat" required>
+            <option value="Suprême de Volaille">Suprême de Volaille</option>
+            <option value="Filet de Saint-Pierre">Filet de Saint-Pierre</option>
+        </select>
+
+        <div id="child-menu" style="display: none;">
+            <label for="ChildMenu">Menu Enfant :</label>
+            <select name="Menu Enfant" id="ChildMenu">
+                <option value="Burger Steak Haché">Burger Steak Haché</option>
+                <option value="Nuggets">Nuggets</option>
+            </select>
+        </div>
+
+        <button type="submit">Envoyer</button>
+    </form>
+
+    <script src="script.js"></script>
+
 </body>
 </html>
