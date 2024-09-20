@@ -5,43 +5,43 @@ body {
   padding: 0;
 }
 
-.container {
-  width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+h3, h4 {
+  font-size: 20px;
 }
 
-header h1 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 30px;
+label {
+  display: block;
+  margin-bottom: 8px;
 }
 
-.presentation p, .menu p, .menu ul, .cta {
-  text-align: center;
+input, select {
+  display: block;
+  width: 100%;
+  padding: 10px;
   margin-bottom: 20px;
-}
-
-.menu ul {
-  list-style: none;
-  padding: 0;
-}
-
-.menu ul li {
-  margin-bottom: 10px;
-}
-
-.cta button {
-  padding: 10px 20px;
-  background-color: #333;
-  color: white;
-  border: none;
-  cursor: pointer;
   font-size: 16px;
 }
 
-.cta button:hover {
-  background-color: #555;
+button {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+form {
+  width: 80%;
+  margin: 0 auto;
+}
+
+#guestForms {
+  margin-bottom: 20px;
 }
