@@ -1,131 +1,61 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire de Réservation - Anniversaire 50 ans Michel Urban</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1>Réservation pour l'Anniversaire</h1>
-    </header>
+<form
+  action="https://formspree.io/f/xpwagdzb"
+  method="POST"
+>
+  <h3>Personne 1 :</h3>
+  <label>
+    Nom :
+    <input type="text" name="Nom" placeholder="Nom" required>
+  </label>
+  
+  <label>
+    Prénom :
+    <input type="text" name="Prénom" placeholder="Prénom" required>
+  </label>
 
-    <section>
-        <form action="https://formspree.io/f/xpwagdzb" method="POST">
-            <h2>Informations Invité</h2>
-            <div id="guest-list">
-                <!-- Invité 1 -->
-                <div class="guest">
-                    <h3>Invité 1 :</h3>
-                    <label for="Nom">Nom :</label>
-                    <input type="text" name="Nom_1" required>
+  <label for="Type">Type :</label>
+  <select name="Type" id="Type" required onchange="toggleChildMenu(this)">
+    <option value="Adulte">Adulte</option>
+    <option value="Enfant">Enfant</option>
+  </select>
 
-                    <label for="Prénom">Prénom :</label>
-                    <input type="text" name="Prénom_1" required>
+  <label for="Entrée">Entrée :</label>
+  <select name="Entrée" id="Entrée" required>
+    <option value="Salade de Samoussa de Chèvre">Salade de Samoussa de Chèvre</option>
+    <option value="Assiette de Tartare de Saumon">Assiette de Tartare de Saumon aux Fines Herbes</option>
+  </select>
 
-                    <label for="Type">Type :</label>
-                    <select name="Type_1" id="Type_1" onchange="toggleChildMenu(this, 1)" required>
-                        <option value="Adulte">Adulte</option>
-                        <option value="Enfant">Enfant</option>
-                    </select>
+  <label for="Plat">Plat :</label>
+  <select name="Plat" id="Plat" required>
+    <option value="Suprême de Volaille Farci aux Légumes">Suprême de Volaille Farci aux Légumes</option>
+    <option value="Filet de Saint-Pierre, Sauce Homardine">Filet de Saint-Pierre, Sauce Homardine</option>
+  </select>
 
-                    <label for="Entrée_1">Entrée :</label>
-                    <select name="Entrée_1" id="Entrée_1" required>
-                        <option value="Salade de Samoussa de Chèvre">Salade de Samoussa de Chèvre</option>
-                        <option value="Assiette de Tartare de Saumon">Assiette de Tartare de Saumon</option>
-                    </select>
+  <div id="child-menu" style="display: none;">
+    <label for="ChildMenu">Menu Enfant :</label>
+    <select name="Menu Enfant" id="ChildMenu">
+      <option value="Burger Steak Haché">Burger Steak Haché</option>
+      <option value="Nuggets">Nuggets</option>
+    </select>
+  </div>
 
-                    <label for="Plat_1">Plat :</label>
-                    <select name="Plat_1" id="Plat_1" required>
-                        <option value="Suprême de Volaille Farci">Suprême de Volaille Farci</option>
-                        <option value="Filet de Saint-Pierre">Filet de Saint-Pierre</option>
-                    </select>
+  <input type="hidden" name="_replyto" value="murban1547@gmail.com">
+  <input type="hidden" name="_subject" value="Nouvelle réservation pour l'anniversaire">
 
-                    <div id="child-menu_1" style="display: none;">
-                        <label for="Menu_Enfant_1">Menu Enfant :</label>
-                        <select name="Menu_Enfant_1" id="Menu_Enfant_1">
-                            <option value="Burger Steak Haché">Burger Steak Haché</option>
-                            <option value="Nuggets">Nuggets</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+  <button type="submit">Envoyer</button>
+</form>
 
-            <button type="button" onclick="addGuest()">Ajouter un invité</button>
-            <button type="button" onclick="removeGuest()">Supprimer le dernier invité</button>
+<script>
+  function toggleChildMenu(typeSelect) {
+    var childMenuDiv = document.getElementById("child-menu");
+    var platSelect = document.getElementById("Plat");
 
-            <button type="submit" class="submit-btn">Envoyer</button>
-        </form>
-    </section>
-
-    <footer>
-        <p>Michel Urban - Anniversaire 50 ans</p>
-    </footer>
-
-    <script>
-        let guestCount = 1;
-
-        function addGuest() {
-            guestCount++;
-            const guestList = document.getElementById('guest-list');
-            const newGuest = `
-                <div class="guest">
-                    <h3>Invité ${guestCount} :</h3>
-                    <label for="Nom">Nom :</label>
-                    <input type="text" name="Nom_${guestCount}" required>
-
-                    <label for="Prénom">Prénom :</label>
-                    <input type="text" name="Prénom_${guestCount}" required>
-
-                    <label for="Type">Type :</label>
-                    <select name="Type_${guestCount}" id="Type_${guestCount}" onchange="toggleChildMenu(this, ${guestCount})" required>
-                        <option value="Adulte">Adulte</option>
-                        <option value="Enfant">Enfant</option>
-                    </select>
-
-                    <label for="Entrée_${guestCount}">Entrée :</label>
-                    <select name="Entrée_${guestCount}" id="Entrée_${guestCount}" required>
-                        <option value="Salade de Samoussa de Chèvre">Salade de Samoussa de Chèvre</option>
-                        <option value="Assiette de Tartare de Saumon">Assiette de Tartare de Saumon</option>
-                    </select>
-
-                    <label for="Plat_${guestCount}">Plat :</label>
-                    <select name="Plat_${guestCount}" id="Plat_${guestCount}" required>
-                        <option value="Suprême de Volaille Farci">Suprême de Volaille Farci</option>
-                        <option value="Filet de Saint-Pierre">Filet de Saint-Pierre</option>
-                    </select>
-
-                    <div id="child-menu_${guestCount}" style="display: none;">
-                        <label for="Menu_Enfant_${guestCount}">Menu Enfant :</label>
-                        <select name="Menu_Enfant_${guestCount}" id="Menu_Enfant_${guestCount}">
-                            <option value="Burger Steak Haché">Burger Steak Haché</option>
-                            <option value="Nuggets">Nuggets</option>
-                        </select>
-                    </div>
-                </div>
-            `;
-            guestList.insertAdjacentHTML('beforeend', newGuest);
-        }
-
-        function removeGuest() {
-            if (guestCount > 1) {
-                const guestList = document.getElementById('guest-list');
-                guestList.removeChild(guestList.lastChild);
-                guestCount--;
-            }
-        }
-
-        function toggleChildMenu(typeSelect, guestIndex) {
-            const childMenuDiv = document.getElementById(`child-menu_${guestIndex}`);
-            if (typeSelect.value === "Enfant") {
-                childMenuDiv.style.display = "block";
-                document.getElementById(`Plat_${guestIndex}`).disabled = true;
-            } else {
-                childMenuDiv.style.display = "none";
-                document.getElementById(`Plat_${guestIndex}`).disabled = false;
-            }
-        }
-    </script>
-</body>
-</html>
+    if (typeSelect.value === "Enfant") {
+      childMenuDiv.style.display = "block";
+      platSelect.disabled = true;  // Désactiver les plats adultes pour les enfants
+    } else {
+      childMenuDiv.style.display = "none";
+      platSelect.disabled = false; // Activer les plats adultes pour les adultes
+    }
+  }
+</script>
