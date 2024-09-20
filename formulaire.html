@@ -1,0 +1,44 @@
+<form action="/submit" method="POST">
+  <label for="typePerson">Type de Personne :</label>
+  <select name="typePerson" id="typePerson" onchange="toggleForm()">
+    <option value="adulte">Adulte</option>
+    <option value="enfant">Enfant</option>
+  </select>
+
+  <div id="formAdulte">
+    <label for="entreeAdulte">Entrée (Adulte) :</label>
+    <select name="entreeAdulte" id="entreeAdulte">
+      <option value="Salade de Samoussa de Chèvre">Salade de Samoussa de Chèvre</option>
+      <option value="Tartare de Saumon">Tartare de Saumon</option>
+    </select>
+
+    <label for="platAdulte">Plat (Adulte) :</label>
+    <select name="platAdulte" id="platAdulte">
+      <option value="Suprême de Volaille Farci aux Légumes">Suprême de Volaille Farci aux Légumes</option>
+      <option value="Filet de Saint-Pierre, Sauce Homardine">Filet de Saint-Pierre, Sauce Homardine</option>
+    </select>
+  </div>
+
+  <div id="formEnfant" style="display: none;">
+    <label for="menuEnfant">Menu (Enfant) :</label>
+    <select name="menuEnfant" id="menuEnfant">
+      <option value="Burger Steak Haché">Burger Steak Haché</option>
+      <option value="Nuggets">Nuggets</option>
+    </select>
+  </div>
+
+  <button type="submit">Envoyer</button>
+</form>
+
+<script>
+  function toggleForm() {
+    var type = document.getElementById('typePerson').value;
+    if (type === 'adulte') {
+      document.getElementById('formAdulte').style.display = 'block';
+      document.getElementById('formEnfant').style.display = 'none';
+    } else {
+      document.getElementById('formAdulte').style.display = 'none';
+      document.getElementById('formEnfant').style.display = 'block';
+    }
+  }
+</script>
