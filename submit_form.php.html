@@ -15,7 +15,7 @@
     <option value="Tartare de Saumon">Tartare de Saumon</option>
   </select>
 
-  <label for="Plat">Plat :</label>
+  <label for="Plat" id="plat-label">Plat :</label>
   <select name="Plat" id="Plat" required>
     <option value="Suprême de Volaille">Suprême de Volaille</option>
     <option value="Filet de Saint-Pierre">Filet de Saint-Pierre</option>
@@ -35,12 +35,17 @@
 <script>
   function toggleChildMenu(typeSelect) {
     var childMenuDiv = document.getElementById("child-menu");
+    var platDiv = document.getElementById("Plat");
+    var platLabel = document.getElementById("plat-label");
+
     if (typeSelect.value === "Enfant") {
-      childMenuDiv.style.display = "block";
-      document.getElementById("Plat").disabled = true;  // Désactiver les plats adultes pour les enfants
+      childMenuDiv.style.display = "block"; // Afficher le menu enfant
+      platDiv.style.display = "none"; // Cacher le menu plat adulte
+      platLabel.style.display = "none";
     } else {
-      childMenuDiv.style.display = "none";
-      document.getElementById("Plat").disabled = false; // Activer les plats adultes pour les adultes
+      childMenuDiv.style.display = "none"; // Cacher le menu enfant
+      platDiv.style.display = "block"; // Afficher le menu plat adulte
+      platLabel.style.display = "block";
     }
   }
 </script>
