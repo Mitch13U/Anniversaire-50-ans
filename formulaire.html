@@ -19,6 +19,13 @@
     const guestForm = document.createElement('div');
     guestForm.innerHTML = `
       <h4>Invité ${guestCount}</h4>
+
+      <label for="nom_${guestCount}">Nom :</label>
+      <input type="text" name="nom_${guestCount}" id="nom_${guestCount}" required>
+
+      <label for="prenom_${guestCount}">Prénom :</label>
+      <input type="text" name="prenom_${guestCount}" id="prenom_${guestCount}" required>
+
       <label for="typePerson_${guestCount}">Type de Personne :</label>
       <select name="typePerson_${guestCount}" id="typePerson_${guestCount}" onchange="toggleForm(${guestCount})">
         <option value="adulte">Adulte</option>
