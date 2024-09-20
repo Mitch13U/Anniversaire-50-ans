@@ -1,86 +1,131 @@
-<form action="https://formspree.io/f/xpwagdzb" method="POST">
-  <h3>Informations sur les invités</h3>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Réservation - Anniversaire 50 ans Michel Urban</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Réservation pour l'Anniversaire</h1>
+    </header>
 
-  <div id="guestForms">
-    <!-- Les formulaires seront ajoutés ici dynamiquement -->
-  </div>
+    <section>
+        <form action="https://formspree.io/f/xpwagdzb" method="POST">
+            <h2>Informations Invité</h2>
+            <div id="guest-list">
+                <!-- Invité 1 -->
+                <div class="guest">
+                    <h3>Invité 1 :</h3>
+                    <label for="Nom">Nom :</label>
+                    <input type="text" name="Nom_1" required>
 
-  <button type="button" onclick="addGuest()">Ajouter un invité</button>
-  <button type="button" onclick="removeGuest()">Supprimer le dernier invité</button>
-  <button type="submit" style="display: block; margin: 20px auto; padding: 10px 20px;">Envoyer</button>
-</form>
+                    <label for="Prénom">Prénom :</label>
+                    <input type="text" name="Prénom_1" required>
 
-<script>
-  let guestCount = 0;
-  const maxGuests = 20; // Limite max des invités
+                    <label for="Type">Type :</label>
+                    <select name="Type_1" id="Type_1" onchange="toggleChildMenu(this, 1)" required>
+                        <option value="Adulte">Adulte</option>
+                        <option value="Enfant">Enfant</option>
+                    </select>
 
-  function addGuest() {
-    if (guestCount < maxGuests) {
-      guestCount++;
-      const guestForms = document.getElementById('guestForms');
+                    <label for="Entrée_1">Entrée :</label>
+                    <select name="Entrée_1" id="Entrée_1" required>
+                        <option value="Salade de Samoussa de Chèvre">Salade de Samoussa de Chèvre</option>
+                        <option value="Assiette de Tartare de Saumon">Assiette de Tartare de Saumon</option>
+                    </select>
 
-      const guestForm = document.createElement('div');
-      guestForm.setAttribute('id', `guest_${guestCount}`);
-      guestForm.innerHTML = `
-        <h4>Invité ${guestCount}</h4>
+                    <label for="Plat_1">Plat :</label>
+                    <select name="Plat_1" id="Plat_1" required>
+                        <option value="Suprême de Volaille Farci">Suprême de Volaille Farci</option>
+                        <option value="Filet de Saint-Pierre">Filet de Saint-Pierre</option>
+                    </select>
 
-        <label for="nom_${guestCount}">Nom :</label>
-        <input type="text" name="nom_${guestCount}" id="nom_${guestCount}" required style="font-size: 16px;">
+                    <div id="child-menu_1" style="display: none;">
+                        <label for="Menu_Enfant_1">Menu Enfant :</label>
+                        <select name="Menu_Enfant_1" id="Menu_Enfant_1">
+                            <option value="Burger Steak Haché">Burger Steak Haché</option>
+                            <option value="Nuggets">Nuggets</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
 
-        <label for="prenom_${guestCount}">Prénom :</label>
-        <input type="text" name="prenom_${guestCount}" id="prenom_${guestCount}" required style="font-size: 16px;">
+            <button type="button" onclick="addGuest()">Ajouter un invité</button>
+            <button type="button" onclick="removeGuest()">Supprimer le dernier invité</button>
 
-        <label for="typePerson_${guestCount}">Type de Personne :</label>
-        <select name="typePerson_${guestCount}" id="typePerson_${guestCount}" onchange="toggleForm(${guestCount})" style="font-size: 16px;">
-          <option value="adulte">Adulte</option>
-          <option value="enfant">Enfant</option>
-        </select>
+            <button type="submit" class="submit-btn">Envoyer</button>
+        </form>
+    </section>
 
-        <div id="formAdulte_${guestCount}" style="font-size: 16px;">
-          <label for="entreeAdulte_${guestCount}">Entrée (Adulte) :</label>
-          <select name="entreeAdulte_${guestCount}" id="entreeAdulte_${guestCount}" style="font-size: 16px;">
-            <option value="Salade de Samoussa de Chèvre">Salade de Samoussa de Chèvre</option>
-            <option value="Tartare de Saumon">Assiette de Tartare de Saumon aux Fines Herbes</option>
-          </select>
+    <footer>
+        <p>Michel Urban - Anniversaire 50 ans</p>
+    </footer>
 
-          <label for="platAdulte_${guestCount}">Plat (Adulte) :</label>
-          <select name="platAdulte_${guestCount}" id="platAdulte_${guestCount}" style="font-size: 16px;">
-            <option value="Suprême de Volaille Farci aux Légumes">Suprême de Volaille Farci aux Légumes</option>
-            <option value="Filet de Saint-Pierre, Sauce Homardine">Filet de Saint-Pierre, Sauce Homardine</option>
-          </select>
-        </div>
+    <script>
+        let guestCount = 1;
 
-        <div id="formEnfant_${guestCount}" style="display: none; font-size: 16px;">
-          <label for="menuEnfant_${guestCount}">Menu (Enfant) :</label>
-          <select name="menuEnfant_${guestCount}" id="menuEnfant_${guestCount}" style="font-size: 16px;">
-            <option value="Burger Steak Haché">Burger Steak Haché</option>
-            <option value="Nuggets">Nuggets</option>
-          </select>
-        </div>
-      `;
+        function addGuest() {
+            guestCount++;
+            const guestList = document.getElementById('guest-list');
+            const newGuest = `
+                <div class="guest">
+                    <h3>Invité ${guestCount} :</h3>
+                    <label for="Nom">Nom :</label>
+                    <input type="text" name="Nom_${guestCount}" required>
 
-      guestForms.appendChild(guestForm);
-    } else {
-      alert("Vous avez atteint le nombre maximum d'invités.");
-    }
-  }
+                    <label for="Prénom">Prénom :</label>
+                    <input type="text" name="Prénom_${guestCount}" required>
 
-  function removeGuest() {
-    if (guestCount > 0) {
-      const guestForm = document.getElementById(`guest_${guestCount}`);
-      guestForm.remove();
-      guestCount--;
-    }
-  }
+                    <label for="Type">Type :</label>
+                    <select name="Type_${guestCount}" id="Type_${guestCount}" onchange="toggleChildMenu(this, ${guestCount})" required>
+                        <option value="Adulte">Adulte</option>
+                        <option value="Enfant">Enfant</option>
+                    </select>
 
-  function toggleForm(guestCount) {
-    const type = document.getElementById(`typePerson_${guestCount}`).value;
-    if (type === 'adulte') {
-      document.getElementById(`formAdulte_${guestCount}`).style.display = 'block';
-      document.getElementById(`formEnfant_${guestCount}`).style.display = 'none';
-    } else {
-      document.getElementById(`formAdulte_${guestCount}`).style.display = 'none';
-      document.getElementById(`formEnfant_${guestCount}`).style.display = 'block';
-    }
-  }
-</script>
+                    <label for="Entrée_${guestCount}">Entrée :</label>
+                    <select name="Entrée_${guestCount}" id="Entrée_${guestCount}" required>
+                        <option value="Salade de Samoussa de Chèvre">Salade de Samoussa de Chèvre</option>
+                        <option value="Assiette de Tartare de Saumon">Assiette de Tartare de Saumon</option>
+                    </select>
+
+                    <label for="Plat_${guestCount}">Plat :</label>
+                    <select name="Plat_${guestCount}" id="Plat_${guestCount}" required>
+                        <option value="Suprême de Volaille Farci">Suprême de Volaille Farci</option>
+                        <option value="Filet de Saint-Pierre">Filet de Saint-Pierre</option>
+                    </select>
+
+                    <div id="child-menu_${guestCount}" style="display: none;">
+                        <label for="Menu_Enfant_${guestCount}">Menu Enfant :</label>
+                        <select name="Menu_Enfant_${guestCount}" id="Menu_Enfant_${guestCount}">
+                            <option value="Burger Steak Haché">Burger Steak Haché</option>
+                            <option value="Nuggets">Nuggets</option>
+                        </select>
+                    </div>
+                </div>
+            `;
+            guestList.insertAdjacentHTML('beforeend', newGuest);
+        }
+
+        function removeGuest() {
+            if (guestCount > 1) {
+                const guestList = document.getElementById('guest-list');
+                guestList.removeChild(guestList.lastChild);
+                guestCount--;
+            }
+        }
+
+        function toggleChildMenu(typeSelect, guestIndex) {
+            const childMenuDiv = document.getElementById(`child-menu_${guestIndex}`);
+            if (typeSelect.value === "Enfant") {
+                childMenuDiv.style.display = "block";
+                document.getElementById(`Plat_${guestIndex}`).disabled = true;
+            } else {
+                childMenuDiv.style.display = "none";
+                document.getElementById(`Plat_${guestIndex}`).disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
