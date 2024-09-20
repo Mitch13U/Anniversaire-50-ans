@@ -1,44 +1,64 @@
 <form action="/submit" method="POST">
-  <label for="typePerson">Type de Personne :</label>
-  <select name="typePerson" id="typePerson" onchange="toggleForm()">
-    <option value="adulte">Adulte</option>
-    <option value="enfant">Enfant</option>
-  </select>
+  <h3>Informations sur les invités</h3>
 
-  <div id="formAdulte">
-    <label for="entreeAdulte">Entrée (Adulte) :</label>
-    <select name="entreeAdulte" id="entreeAdulte">
-      <option value="Salade de Samoussa de Chèvre">Salade de Samoussa de Chèvre</option>
-      <option value="Tartare de Saumon">Tartare de Saumon</option>
-    </select>
-
-    <label for="platAdulte">Plat (Adulte) :</label>
-    <select name="platAdulte" id="platAdulte">
-      <option value="Suprême de Volaille Farci aux Légumes">Suprême de Volaille Farci aux Légumes</option>
-      <option value="Filet de Saint-Pierre, Sauce Homardine">Filet de Saint-Pierre, Sauce Homardine</option>
-    </select>
+  <div id="guestForms">
+    <!-- Les formulaires seront ajoutés ici dynamiquement -->
   </div>
 
-  <div id="formEnfant" style="display: none;">
-    <label for="menuEnfant">Menu (Enfant) :</label>
-    <select name="menuEnfant" id="menuEnfant">
-      <option value="Burger Steak Haché">Burger Steak Haché</option>
-      <option value="Nuggets">Nuggets</option>
-    </select>
-  </div>
-
+  <button type="button" onclick="addGuest()">Ajouter un invité</button>
   <button type="submit">Envoyer</button>
 </form>
 
 <script>
-  function toggleForm() {
-    var type = document.getElementById('typePerson').value;
+  let guestCount = 0;
+
+  function addGuest() {
+    guestCount++;
+    const guestForms = document.getElementById('guestForms');
+
+    const guestForm = document.createElement('div');
+    guestForm.innerHTML = `
+      <h4>Invité ${guestCount}</h4>
+      <label for="typePerson_${guestCount}">Type de Personne :</label>
+      <select name="typePerson_${guestCount}" id="typePerson_${guestCount}" onchange="toggleForm(${guestCount})">
+        <option value="adulte">Adulte</option>
+        <option value="enfant">Enfant</option>
+      </select>
+
+      <div id="formAdulte_${guestCount}">
+        <label for="entreeAdulte_${guestCount}">Entrée (Adulte) :</label>
+        <select name="entreeAdulte_${guestCount}" id="entreeAdulte_${guestCount}">
+          <option value="Salade de Samoussa de Chèvre">Salade de Samoussa de Chèvre</option>
+          <option value="Tartare de Saumon">Tartare de Saumon</option>
+        </select>
+
+        <label for="platAdulte_${guestCount}">Plat (Adulte) :</label>
+        <select name="platAdulte_${guestCount}" id="platAdulte_${guestCount}">
+          <option value="Suprême de Volaille Farci aux Légumes">Suprême de Volaille Farci aux Légumes</option>
+          <option value="Filet de Saint-Pierre, Sauce Homardine">Filet de Saint-Pierre, Sauce Homardine</option>
+        </select>
+      </div>
+
+      <div id="formEnfant_${guestCount}" style="display: none;">
+        <label for="menuEnfant_${guestCount}">Menu (Enfant) :</label>
+        <select name="menuEnfant_${guestCount}" id="menuEnfant_${guestCount}">
+          <option value="Burger Steak Haché">Burger Steak Haché</option>
+          <option value="Nuggets">Nuggets</option>
+        </select>
+      </div>
+    `;
+
+    guestForms.appendChild(guestForm);
+  }
+
+  function toggleForm(guestCount) {
+    const type = document.getElementById(`typePerson_${guestCount}`).value;
     if (type === 'adulte') {
-      document.getElementById('formAdulte').style.display = 'block';
-      document.getElementById('formEnfant').style.display = 'none';
+      document.getElementById(`formAdulte_${guestCount}`).style.display = 'block';
+      document.getElementById(`formEnfant_${guestCount}`).style.display = 'none';
     } else {
-      document.getElementById('formAdulte').style.display = 'none';
-      document.getElementById('formEnfant').style.display = 'block';
+      document.getElementById(`formAdulte_${guestCount}`).style.display = 'none';
+      document.getElementById(`formEnfant_${guestCount}`).style.display = 'block';
     }
   }
 </script>
