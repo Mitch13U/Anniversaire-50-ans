@@ -1,50 +1,48 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Réservations Anniversaire 50 ans</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<form action="https://formspree.io/f/xpwagdzb" method="POST">
+  <h3>Confirmation de présence :</h3>
 
-    <h1>Formulaire de Réservation - Anniversaire 50 ans</h1>
-    
-    <form action="https://formspree.io/f/xpwagdzb" method="POST">
-        <h3>Personne 1 :</h3>
-        <input type="text" name="Nom" placeholder="Nom" required>
-        <input type="text" name="Prénom" placeholder="Prénom" required>
-        
-        <label for="Type">Type :</label>
-        <select name="Type" id="Type" required onchange="toggleChildMenu(this)">
-            <option value="Adulte">Adulte</option>
-            <option value="Enfant">Enfant</option>
-        </select>
+  <label for="adults">Nombre d'adultes :</label>
+  <input type="number" name="adults" id="adults" required>
 
-        <label for="Entrée">Entrée :</label>
-        <select name="Entrée" id="Entrée" required>
-            <option value="Salade de Samoussa">Salade de Samoussa</option>
-            <option value="Tartare de Saumon">Tartare de Saumon</option>
-        </select>
+  <label for="children">Nombre d'enfants :</label>
+  <input type="number" name="children" id="children">
 
-        <label for="Plat">Plat :</label>
-        <select name="Plat" id="Plat" required>
-            <option value="Suprême de Volaille">Suprême de Volaille</option>
-            <option value="Filet de Saint-Pierre">Filet de Saint-Pierre</option>
-        </select>
+  <h4>Choix des entrées :</h4>
+  <label for="entree">Choisissez votre entrée :</label>
+  <select name="entree" id="entree" required>
+    <option value="Salade de Samoussa de Chèvre">Salade de Samoussa de Chèvre</option>
+    <option value="Assiette de Tartare de Saumon aux Fines Herbes">Assiette de Tartare de Saumon aux Fines Herbes</option>
+  </select>
 
-        <div id="child-menu" style="display: none;">
-            <label for="ChildMenu">Menu Enfant :</label>
-            <select name="Menu Enfant" id="ChildMenu">
-                <option value="Burger Steak Haché">Burger Steak Haché</option>
-                <option value="Nuggets">Nuggets</option>
-            </select>
-        </div>
+  <h4>Choix des plats principaux :</h4>
+  <label for="plat">Choisissez votre plat :</label>
+  <select name="plat" id="plat" required>
+    <option value="Suprême de Volaille Farci aux Légumes">Suprême de Volaille Farci aux Légumes</option>
+    <option value="Filet de Saint-Pierre, Sauce Homardine">Filet de Saint-Pierre, Sauce Homardine</option>
+  </select>
 
-        <button type="submit">Envoyer</button>
-    </form>
+  <h4>Menu enfant (si applicable) :</h4>
+  <label for="child_menu">Choisissez le menu enfant :</label>
+  <select name="child_menu" id="child_menu">
+    <option value="Burger Steak haché">Burger Steak haché</option>
+    <option value="Nuggets">Nuggets</option>
+  </select>
 
-    <script src="script.js"></script>
+  <button type="submit">Envoyer la confirmation</button>
+</form>
 
-</body>
-</html>
+<h4>Annonce :</h4>
+<p>
+  Cher(e)s invité(e)s,<br>
+  Je vous informe que pour la bonne organisation de mon anniversaire qui se déroulera le <strong>9 novembre 2024 à 20h</strong> au restaurant <strong>La Transhumance à Istres</strong>, j’ai besoin de votre confirmation concernant les points suivants :
+</p>
+<ul>
+  <li>1. Nombre de personnes adultes présentes.</li>
+  <li>2. Nombre d'enfants présents.</li>
+  <li>3. Votre choix d'entrée : Salade de Samoussa de Chèvre ou Assiette de Tartare de Saumon aux Fines Herbes.</li>
+  <li>4. Votre choix de plat principal : Suprême de Volaille Farci ou Filet de Saint-Pierre, Sauce Homardine.</li>
+</ul>
+<p>
+  La soirée sera accompagnée d'un concert live pour rendre cet événement encore plus mémorable !<br>
+  Merci de me transmettre vos réponses le plus rapidement possible avant <strong>Lundi 23 septembre 17h</strong> afin de finaliser la réservation.
+</p>
