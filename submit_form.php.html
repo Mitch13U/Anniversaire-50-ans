@@ -1,31 +1,46 @@
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $filename = "reservations.csv";
+<form action="https://formspree.io/f/murban1547@gmail.com" method="POST">
+  <h3>Personne 1 :</h3>
+  <input type="text" name="Nom" placeholder="Nom" required>
+  <input type="text" name="Prénom" placeholder="Prénom" required>
+  
+  <label for="Type">Type :</label>
+  <select name="Type" id="Type" required onchange="toggleChildMenu(this)">
+    <option value="Adulte">Adulte</option>
+    <option value="Enfant">Enfant</option>
+  </select>
 
-    // Ouvre ou crée le fichier CSV
-    $file = fopen($filename, "a");
+  <label for="Entrée">Entrée :</label>
+  <select name="Entrée" id="Entrée" required>
+    <option value="Salade de Samoussa">Salade de Samoussa</option>
+    <option value="Tartare de Saumon">Tartare de Saumon</option>
+  </select>
 
-    // Parcours chaque personne inscrite
-    $personIndex = 1;
-    while (isset($_POST["first_name_$personIndex"]) && isset($_POST["last_name_$personIndex"])) {
-        $firstName = $_POST["first_name_$personIndex"];
-        $lastName = $_POST["last_name_$personIndex"];
-        $age = $_POST["age_$personIndex"];
-        $entree = $_POST["entree_$personIndex"];
-        $plat = $_POST["plat_$personIndex"];
-        $childMenu = isset($_POST["child-menu_$personIndex"]) ? $_POST["child-menu_$personIndex"] : "N/A";
+  <label for="Plat">Plat :</label>
+  <select name="Plat" id="Plat" required>
+    <option value="Suprême de Volaille">Suprême de Volaille</option>
+    <option value="Filet de Saint-Pierre">Filet de Saint-Pierre</option>
+  </select>
 
-        // Écriture dans le fichier CSV
-        $data = [$firstName, $lastName, $age, $entree, $plat, $childMenu];
-        fputcsv($file, $data);
+  <div id="child-menu" style="display: none;">
+    <label for="ChildMenu">Menu Enfant :</label>
+    <select name="Menu Enfant" id="ChildMenu">
+      <option value="Burger Steak Haché">Burger Steak Haché</option>
+      <option value="Nuggets">Nuggets</option>
+    </select>
+  </div>
 
-        $personIndex++;
+  <button type="submit">Envoyer</button>
+</form>
+
+<script>
+  function toggleChildMenu(typeSelect) {
+    var childMenuDiv = document.getElementById("child-menu");
+    if (typeSelect.value === "Enfant") {
+      childMenuDiv.style.display = "block";
+      document.getElementById("Plat").disabled = true;  // Désactiver les plats adultes pour les enfants
+    } else {
+      childMenuDiv.style.display = "none";
+      document.getElementById("Plat").disabled = false; // Activer les plats adultes pour les adultes
     }
-
-    // Fermer le fichier après écriture
-    fclose($file);
-
-    // Rediriger vers une page de confirmation (ou affichage d'un message)
-    echo "<h2>Merci pour votre réservation !</h2>";
-}
-?>
+  }
+</script>
